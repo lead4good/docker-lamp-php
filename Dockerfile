@@ -1,5 +1,3 @@
-FROM php:5-apache
+FROM webdevops/php-apache:debian-8
 
-RUN a2enmod rewrite
-
-RUN docker-php-ext-install -j$(nproc) mysql
+COPY php.ini /opt/docker/etc/php/php.ini
