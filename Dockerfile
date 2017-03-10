@@ -37,7 +37,8 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
 # already enabled mime
-RUN a2enmod rewrite expires mime deflate headers
+RUN a2dismod mpm_prefork
+RUN a2enmod mpm_worker rewrite expires mime deflate headers
 
 VOLUME /var/www/html
 
