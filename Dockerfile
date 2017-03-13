@@ -22,7 +22,7 @@ RUN set -xe \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
   && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-  && docker-php-ext-install mysql mysqli pdo_mysql sockets opcache gd imap mcrypt intl pspell xmlrpc soap zip s
+  && docker-php-ext-install mysql mysqli pdo_mysql sockets opcache gd imap mcrypt intl pspell xmlrpc soap zip
 #  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $buildDeps
 
 # set recommended PHP.ini settings
