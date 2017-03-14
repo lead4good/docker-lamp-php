@@ -1,7 +1,7 @@
 FROM php:7-apache
 
 # install the PHP extensions we need
-# not found common auth
+# not found common auth mysql
 # already installed curl openssl mbstring xml pear sqlite pdo
 RUN set -xe \
 	&& buildDeps=" \
@@ -22,7 +22,7 @@ RUN set -xe \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
   && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-  && docker-php-ext-install mysql mysqli pdo_mysql sockets opcache gd imap mcrypt intl pspell xmlrpc soap zip
+  && docker-php-ext-install mysqli pdo_mysql sockets opcache gd imap mcrypt intl pspell xmlrpc soap zip
 #  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $buildDeps
 
 # set recommended PHP.ini settings
