@@ -18,11 +18,12 @@ RUN set -xe \
     libmcrypt-dev \
     libc-client-dev \
     libkrb5-dev \
+    libxslt-dev \
 	" \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
   && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-  && docker-php-ext-install mysqli pdo_mysql sockets opcache gd imap mcrypt intl pspell xmlrpc soap zip
+  && docker-php-ext-install mysqli pdo_mysql sockets opcache gd imap mcrypt intl pspell xmlrpc xsl soap zip
 #  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $buildDeps
 
 # set recommended PHP.ini settings
