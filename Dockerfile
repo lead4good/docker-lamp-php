@@ -42,6 +42,4 @@ RUN { \
 # RUN a2enmod mpm_worker
 RUN a2enmod rewrite expires mime deflate headers
 
-VOLUME /var/www/html
-
-CMD ["apache2-foreground"]
+COPY config/php.ini /usr/local/etc/php/
