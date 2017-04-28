@@ -1,4 +1,4 @@
-FROM php:7-apache
+FROM php:5-fpm
 
 # install the PHP extensions we need
 # not found common auth mysql
@@ -8,13 +8,8 @@ RUN set -xe \
     libjpeg-dev \
     libpng12-dev \
     libpspell-dev \
-    libxml2-dev libicu-dev \
-    libmcrypt-dev \
-    libc-client-dev \
-    libkrb5-dev \
-    libpspell-dev \
     libxml2-dev \
-    libicu-dev \
+		libicu-dev \
     libmcrypt-dev \
     libc-client-dev \
     libkrb5-dev \
@@ -36,10 +31,5 @@ RUN { \
 		echo 'opcache.fast_shutdown=1'; \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
-
-# already enabled mime
-# RUN a2dismod mpm_prefork
-# RUN a2enmod mpm_worker
-RUN a2enmod rewrite expires mime deflate headers
 
 COPY config/php.ini /usr/local/etc/php/
