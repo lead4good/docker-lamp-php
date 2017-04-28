@@ -1,4 +1,4 @@
-FROM php:5-fpm
+FROM php:7-fpm
 
 # install the PHP extensions we need
 # not found common auth mysql
