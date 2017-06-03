@@ -20,7 +20,7 @@ RUN set -xe \
     libkrb5-dev \
     libxslt-dev \
 	" \
-	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
+	&& apt-get update && apt-get install -y ssmtp $buildDeps --no-install-recommends && rm -rf /var/lib/apt/lists/* \
   && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-install mysql mysqli pdo_mysql sockets opcache gd imap mcrypt intl pspell xmlrpc xsl soap zip
@@ -43,3 +43,7 @@ RUN { \
 RUN a2enmod rewrite expires mime deflate headers
 
 COPY config/php.ini /usr/local/etc/php/
+
+
+COPY ssmtp.sh /ssmtp.sh
+CMD ["/bin/bash", "/ssmtp.sh", "apache2-foreground"]
