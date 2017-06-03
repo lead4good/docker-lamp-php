@@ -4,18 +4,18 @@ echo "Setup ssmtp"
 
 CONF=/etc/ssmtp/ssmtp.conf
 rm $CONF
-SSMTP_ENABLED=false
+ENABLE_SSMTP=false
 
 for E in $(env)
 do
   if [ "$(echo $E | sed -e '/^SSMTP_/!d' )" ]
   then
     echo $E | sed -e 's/^SSMTP_//' >> $CONF
-    SSMTP_ENABLED=false
+    ENABLE_SSMTP=true
   fi
 done
 
-if [ $SSMTP_ENABLED ]; then
+if [ $ENABLE_SSMTP ]; then
   echo 'sendmail_path = "/usr/sbin/ssmtp -t"' > /usr/local/etc/php/conf.d/mail.ini
 fi 
 
